@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: .docker/app/Dockerfile
+    environment:
+      - BINDING=0.0.0.0
+      - RUBY_YJIT_ENABLE=1
+    volumes:
+      - .:/rails:cached
+      - bundle:/usr/local/bundle
+    ports:
+      - "3000:3000"
+    tty: true
+    depends_on:
+      - db
+    healthcheck:
+      test: curl localhost:3000/healthcheck || exit 1
+      interval: 1m30s
+      timeout: 10s
+      retries: 2
+      start_period: 15s
+    restart: on-failure:2
+volumes:
+  bundle:

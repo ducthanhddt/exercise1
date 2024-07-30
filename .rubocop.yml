@@ -1,0 +1,29 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+
+Rails:
+  Enabled: true
+
+AllCops:
+  TargetRubyVersion: 3.2.1
+  DisplayCopNames: true
+  Exclude:
+    - bin/**/*
+    - db/*
+    - db/seeds.rb
+    - db/**/*
+    - vendor/**/*
+    - tmp/**/*
+    - node_modules/**/*
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Metrics/MethodLength:
+  Max: 15
+Metrics/AbcSize:
+  Max: 20
